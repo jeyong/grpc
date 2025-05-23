@@ -83,3 +83,26 @@ Libraries in different languages may be in various states of development. We are
 | WebJS                   | [grpc-web](https://github.com/grpc/grpc-web)         |
 | Dart                    | [grpc-dart](https://github.com/grpc/grpc-dart)       |
 | .NET (pure C# impl.)    | [grpc-dotnet](https://github.com/grpc/grpc-dotnet)   |
+
+
+
+# Build  
+* 방법
+```bash
+mkdir -p ~/projects/
+cd ~/projects/
+git clone -b v1.28.x https://github.com/grpc/grpc.git
+cd grpc
+git submodule update --init
+
+# 빌드 및 설치
+mkdir -p cmake/build
+cd cmake/build
+cmake -DgRPC_INSTALL=ON \
+     -DgRPC_BUILD_TESTS=OFF \
+     -DgRPC_SSL_PROVIDER=package \
+     ../..
+make -j$(nproc)
+sudo make install
+
+```
